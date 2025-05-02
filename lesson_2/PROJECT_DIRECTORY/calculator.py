@@ -1,5 +1,5 @@
 #ask user for first number
-#ask user for second number 
+#ask user for second number
 #ask the user for an operation to perform
 #perform said operation
 #print result to terminal
@@ -16,7 +16,6 @@ def invalid_number(number_str):
         int(number_str)
     except ValueError:
         return True
-    
     return False
 
 #Ask the user for the first number
@@ -52,6 +51,5 @@ match operation:
         output = int(number1) * int(number2)
     case '4':
         output = int(number1) / int(number2)
-        
 
 prompt(f"The result is: {output}")
