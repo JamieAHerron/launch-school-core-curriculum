@@ -1,12 +1,9 @@
-#Take everything that you've learned so far
-#and build a mortgage calculator that determines
-#the monthly payment assuming that interest is compounded monthly.
+#mortgage calculator
 
-#moved outside of while loop (LSBot feedback)
 def prompt(message):
     print(f'===> {message}')
 
-#error checking using try/except (LSBot feedback)
+#error checking function
 def invalid_number(number_str):
     try:
         float(number_str)
@@ -14,51 +11,54 @@ def invalid_number(number_str):
     except ValueError:
         return True
 
+prompt("Welcome to Mortgage Calculator!")
+prompt("---------------------------------")
+
 while True:
-    #loan amount
     prompt("Please enter the loan amount: ")
     loan_amount = input()
 
-    #check for input errors using invalid_number function (LSBot feedback)
+    #check for input errors
     while invalid_number(loan_amount) or float(loan_amount) <= 0:
         prompt("The amount must be a positive number. Please try again: ")
         loan_amount = input()
-    
+
     loan_amount = float(loan_amount)
 
-    #annual percentage return (APR)
     prompt("Please enter the Annual Percentage Rate (APR): ")
-    #Further clarification on desired input(LSBot feedback)
     prompt("Example: 5 for 5%, 2.5 for 2.5%")
-    apr = float(input())
+    apr = input()
 
-    #check for input errors using invalid_number function (LSBot feedback)
+    #check for input errors
     while invalid_number(apr) or float(apr) < 0:
         prompt("Please enter a valid percentage. Try again: ")
-        apr = float(input())
+        apr = input()
 
-    #for zero interest loans
-    if apr == 0:
+    apr = float(apr)
+
+    if apr == 0: #for zero interest loans
         apr = 0
     else:
         apr = apr / 1200
 
-    #loan duration (months)
     prompt("Please enter the loan duration (in months): ")
-    duration_months = int(input())
+    duration_months = input()
 
-    #check for input error using invalid_number function (LSBot feedback)
+    #check for input error
     while invalid_number(duration_months) or int(duration_months) <= 0:
         prompt("The duration (in months) must be a positive number. " \
         "Try again: ")
-        duration_months = int(input())
+        duration_months = input()
 
+    duration_months = int(duration_months)
+
+    #loan payment calculation
     if apr == 0:
         monthly_payment = loan_amount / duration_months
     else:
         monthly_payment = loan_amount * (apr / (1 - (1 + apr) ** (-duration_months)))
 
-    print(f'Your monthly payment will be: ${round(monthly_payment, 2)}')
+    print(f'Your monthly payment will be: ${monthly_payment:.2f}')
 
     prompt("Would you like to calculate another loan? (y/n): ")
     answer = input()
