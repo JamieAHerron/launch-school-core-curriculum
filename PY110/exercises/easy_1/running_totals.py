@@ -24,6 +24,20 @@ def running_total(numbers):
     
     return result
 
+'''
+LS solution
+
+def running_total(nums):
+    result_list = []
+    total = 0
+
+    for num in nums:
+        total += num
+        result_list.append(total)
+
+    return result_list
+'''
+
 
 
 print(running_total([2, 5, 13]) == [2, 7, 20])    # True
