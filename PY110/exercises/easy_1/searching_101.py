@@ -41,24 +41,27 @@ Questions:
     - Do we need to convert to an integer is strings input are always numerical?
     - How do we deal with empty strings (no input)?
 '''
+def get_valid_input(prompt):
+
+    number = input(prompt)
+    while not number.isdigit():
+        number = input(prompt)
+    return number
+
 
 first_five_numbers = []
 ordinals = ['1st', '2nd', '3rd', '4th', '5th']
 
 for i in range(5):
-    number = input(f'Enter the {ordinals[i]} number:')
-    while not number.isdigit():
-        number = input(f'Enter the {ordinals[i]} number:')
-    first_five_numbers.append(int(number))
+    prompt = f'Enter the {ordinals[i]} number:'
+    number_str = get_valid_input(prompt)
+    first_five_numbers.append(int(number_str))
 
-final_number = input('Enter the last value:')
-while not final_number.isdigit():
-    final_number = input('Enter the last value:')
-
-final_number = int(final_number)
+final_number_str = get_valid_input('Enter final value:')
+final_number = int(final_number_str)
 first_five_numbers_string_list = [str(num) for num in first_five_numbers]
 
 if final_number in first_five_numbers:
-    print(f'{str(final_number)} is in {','.join(first_five_numbers_string_list)}')
+    print(f'{final_number} is in {','.join(first_five_numbers_string_list)}')
 else:
-    print(f'{str(final_number)} is not in {','.join(first_five_numbers_string_list)}')
+    print(f'{final_number} is not in {','.join(first_five_numbers_string_list)}')
