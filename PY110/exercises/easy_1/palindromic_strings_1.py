@@ -27,13 +27,14 @@ Algorithm:
 
 def is_palindrome(string):
     if isinstance(string, str) and string != '':
-        reverse_string = string[::-1]
-        if string == reverse_string:
-            return True
-        else:
-            return False
+        return string == string[::-1]
     else:
-        return 'You entered an empty string or non-string type, try again.'
+        return False
+
+#LS refined solution
+
+# def is_palindrome(string):
+#     return isinstance(string, str) and string != '' and string == string[::-1]
 
 # All of these examples should print True
 
