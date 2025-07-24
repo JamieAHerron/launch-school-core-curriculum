@@ -8,6 +8,7 @@ def word_sizes(string):
 
     for word in word_list:
         result[len(word)] = result.get(len(word), 0) + 1
+        print(result)
     
     return result
 
