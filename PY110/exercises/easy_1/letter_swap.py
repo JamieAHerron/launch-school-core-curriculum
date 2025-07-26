@@ -9,8 +9,6 @@ def swap(string):
     for word in word_list:
         if len(word) == 1:
             result += word + ' '
-        elif len(word) == 2:
-            result += word[1] + word[0] + ' '
         else:
             result += word[len(word) -1] + word[1:len(word) - 1] + word[0] + ' '
     return result.strip()
