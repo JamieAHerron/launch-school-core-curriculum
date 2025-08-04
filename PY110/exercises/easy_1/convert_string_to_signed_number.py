@@ -36,8 +36,7 @@ def string_to_signed_integer(string):
     elif string[0] == '-':
         string_number = string[1:]
         int_number = string_to_integer(string_number)
-        negative_int_number = int_number - (int_number * 2)
-        return negative_int_number
+        return -int_number
     else:
         int_number = string_to_integer(string)
         return int_number
