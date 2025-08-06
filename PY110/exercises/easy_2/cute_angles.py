@@ -29,10 +29,11 @@ Note: You can use the following constant to represent the degree symbol:
 DEGREE = "\u00B0"
 
 def add_zero(number):
+    number_str = str(number)
     if number < 10:
-        return '0' + str(number)
+        return '0' + number_str
     else:
-        return number
+        return number_str
 
 def dms(num):
     degrees = int(num)
