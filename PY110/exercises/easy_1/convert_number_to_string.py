@@ -6,19 +6,19 @@ Write a function that converts a non-negative integer value (e.g., 0, 1, 2, 3, a
 You may not use any of the standard conversion functions available in Python, such as str. Your function should do this the old-fashioned way and construct the string by analyzing and manipulating the number.
 '''
 
+NUMBERS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+
 def integer_to_string(integer):
-    numbers = {
-        0: '0',
-        1: '1',
-        2: '2',
-        3: '3',
-        4: '4',
-        5: '5',
-        6: '6',
-        7: '7',
-        8: '8',
-        9: '9',
-    }
+    result = ''
+
+    while integer > 0:
+        integer, remainder = divmod(integer, 10)
+        result = NUMBERS[remainder] + result
+    
+    return result or "0"
+
+    
+
 
 
 

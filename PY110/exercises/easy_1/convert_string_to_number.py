@@ -19,7 +19,6 @@ def string_to_integer(string):
     result = 0
     for char in string:
         result = (result * 10) + numbers[char]
-        print(result)
 
     return result
 
