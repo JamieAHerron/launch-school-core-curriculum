@@ -3,7 +3,6 @@
 
 
 def reverse_number(num):
-    
     string_num = str(num)
 
     return int(string_num[::-1])
