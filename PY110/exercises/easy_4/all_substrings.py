@@ -8,7 +8,11 @@ def leading_substrings(string):
     return [string[:idx + 1] for idx in range(len(string))]
 
 def substrings(string):
-    
+    return [
+    substring
+    for idx in range(len(string))
+    for substring in leading_substrings(string[idx:])
+]
 
 expected_result = [
     "a", "ab", "abc", "abcd", "abcde",
