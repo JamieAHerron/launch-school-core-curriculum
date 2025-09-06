@@ -3,7 +3,6 @@
 Below is a list of problems I found tricky on the first pass. I have listed them below with a solution and any relevant notes to help with further study.
 
 ## Problem 1
----
 
 Write a function that returns True if the string passed as an argument is a palindrome, or False otherwise. This time, however, your function should be case-insensitive, and should ignore all non-alphanumeric characters. 
 
@@ -46,6 +45,6 @@ if char.isalnum():
 </details>
 
 ## Problem 2
----
+
 
 
