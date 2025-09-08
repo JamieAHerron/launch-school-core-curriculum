@@ -106,4 +106,95 @@ When your for loop attempts to iterate over an empty list, the loop's body will 
 
 ## Problem 3
 
+Modify the `word_sizes` function from the previous exercise to exclude non-letters when determining word size. For instance, the word size of `"it's"` is `3`, not `4`.
+
+```Python
+# All of these examples should print True
+
+string = 'Four score and seven.'
+print(word_sizes(string) == {4: 1, 5: 2, 3: 1})
+
+string = 'Hey diddle diddle, the cat and the fiddle!'
+print(word_sizes(string) == {3: 5, 6: 3})
+
+string = 'Humpty Dumpty sat on a w@ll'
+print(word_sizes(string) == {6: 2, 3: 2, 2: 1, 1: 1})
+
+string = "What's up doc?"
+print(word_sizes(string) == {5: 1, 2: 1, 3: 1})
+
+print(word_sizes('') == {})
+```
+
+<details>
+<summary>Show solution</summary>
+
+```Python
+def remove_non_letters(string):
+    result = ""
+    for char in string:
+        if char.isalpha():
+            result += char
+
+    return result
+
+def word_sizes(words):
+    words_list = words.split()
+    counts = {}
+
+    for word in words_list:
+        clean_word = remove_non_letters(word)
+
+        clean_word_size = len(clean_word)
+        if clean_word_size == 0:
+            continue
+
+        counts[clean_word_size] = counts.get(clean_word_size, 0) + 1
+
+    return counts
+```
+
+The function `remove_non_letters` uses the built-in string method `isalpha` to detect alphabetic characters. It returns `True` when a character is a letter, `False` otherwise. When it returns `True`, we append the character to the `result` string.
+
+The `word_sizes` function is very similar to the one we wrote for the previous exercise. However, this version strips out all the non-letters from each word.
+</details>
+
+## Problem 4
+
+Given a string of words separated by spaces, write a function that swaps the first and last letters of every word.
+
+You may assume that every word contains at least one letter, and that the string will always contain at least one word. You may also assume that each string contains nothing but words and spaces, and that there are no leading, trailing, or repeated spaces.
+
+```Python
+print(swap('Oh what a wonderful day it is')
+      == "hO thaw a londerfuw yad ti si")  # True
+print(swap('Abcde') == "ebcdA")            # True
+print(swap('a') == "a")                    # True
+```
+
+<details>
+<summary>Show solution</summary>
+
+```Python
+def swap(words):
+    words_list = words.split()
+
+    for idx in range(len(words_list)):
+        words_list[idx] = swap_first_last_characters(words_list[idx])
+
+    return ' '.join(words_list)
+
+def swap_first_last_characters(word):
+    if len(word) == 1:
+        return word
+
+    return word[-1] + word[1:-1] + word[0]
+```
+
+We start by splitting the input string into a list of words using the `split` method. We then iterate over the words in `words_list`, swapping the first and last character of each word with the `swap_first_last_characters` function.
+
+The trickiest part is swapping the first and last characters. During iteration, `swap_first_last_characters` handles this. The function takes a `word` argument and returns the word with its first and last characters swapped. The swap is achieved by constructing a string composed of the last character (`word[-1]`), the middle characters (`word[1:-1]`), and the first character (`word[0]`). The function also includes a check for the case where the word is only a single character; in such cases, it directly returns the `word` since there's no need for a swap.
+</details>
+
+## Problem 5
 
