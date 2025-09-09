@@ -198,3 +198,109 @@ The trickiest part is swapping the first and last characters. During iteration, 
 
 ## Problem 5
 
+Write a function that takes a string of digits and returns the appropriate number as an integer. You may not use any of the standard conversion functions available in Python, such as `int`. Your function should calculate the result by using the characters in the string.
+
+For now, do not worry about leading `+` or`-` signs, nor should you worry about invalid characters; assume all characters are numeric.
+
+```Python
+print(string_to_integer("4321") == 4321)  # True
+print(string_to_integer("570") == 570)    # True
+```
+
+<details>
+<summary>Show solution</summary>
+
+```Python
+def string_to_integer(s):
+    DIGITS = {
+        '0': 0,
+        '1': 1,
+        '2': 2,
+        '3': 3,
+        '4': 4,
+        '5': 5,
+        '6': 6,
+        '7': 7,
+        '8': 8,
+        '9': 9,
+    }
+
+    value = 0
+    for char in s:
+        value = (10 * value) + DIGITS[char]
+
+    return value
+```
+
+This isn't the shortest or even the easiest solution to this problem, but it's straightforward. The big takeaway from this solution is our use of the `DIGITS` dictionary to convert string digits to their numeric values. This technique of using dictionaries to perform conversions is a common idiom that you can use in a wide variety of situations, often resulting in code that is easier to read, understand, and maintain.
+
+The actual computation of the numeric value of string `s` is mechanical. We take each digit and add it to 10 times the previous value, which generates the desired result. For example, if we have 4, 3, and 1, we compute the result as:
+
+```Python
+initial value is 0
+10 * 0 + 4 -> 4
+10 * 4 + 3 -> 43
+10 * 43 + 1 -> 431
+```
+</details>
+
+## Problem 6
+
+In the previous exercise, you developed a function that converts simple numeric strings to integers. In this exercise, you're going to extend that function to work with signed numbers.
+
+Write a function that takes a string of digits and returns the appropriate number as an integer. The string may have a leading`+` or`-` sign; if the first character is a `+`, your function should return a positive number; if it is a `-`, your function should return a negative number. If there is no sign, return a positive number.
+
+You may assume the string will always contain a valid number.
+
+You may not use any of the standard conversion functions available in Python, such as `int`. You may, however, use the `string_to_integer` function from the previous exercise.
+
+```Python
+print(string_to_signed_integer("4321") == 4321)  # True
+print(string_to_signed_integer("-570") == -570)  # True
+print(string_to_signed_integer("+100") == 100)   # True
+```
+<details>
+<summary>Show solution</summary>
+
+```Python
+def string_to_integer(s):
+    DIGITS = {
+        '0': 0,
+        '1': 1,
+        '2': 2,
+        '3': 3,
+        '4': 4,
+        '5': 5,
+        '6': 6,
+        '7': 7,
+        '8': 8,
+        '9': 9,
+    }
+
+    value = 0
+    for char in s:
+        value = (10 * value) + DIGITS[char]
+
+    return value
+
+def string_to_signed_integer(string):
+    match string[0]:
+        case '-':
+            return -string_to_integer(string[1:])
+        case '+':
+            return string_to_integer(string[1:])
+        case _:
+            return string_to_integer(string)
+    
+
+print(string_to_signed_integer("4321") == 4321)  # True
+print(string_to_signed_integer("-570") == -570)  # True
+print(string_to_signed_integer("+100") == 100)   # True
+```
+
+We've opted to reuse the `string_to_integer` function from the previous exercise. Why waste effort reinventing the wheel? (Oh, wait. That's exactly what we're doing, isn't it?)
+
+This solution is reasonably straightforward: it simply looks at the first character of `string`. If the character is a `-`, the negative of the number represented by the rest of the string is returned. If it is not a `-`, it returns the value of the rest of the string as a number, skipping over a leading `+` if present.
+
+To obtain the remainder of the string after a leading `+` or `-`, we use Python's string slicing syntax.
+</details>
