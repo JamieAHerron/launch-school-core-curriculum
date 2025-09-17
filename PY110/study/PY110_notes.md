@@ -59,7 +59,7 @@ The memory efficiency of ranges is why we need to **use `list` to expand** the b
 [5, 4, 3, 2, 1]
 ```
 
-What are the defining characteristics that make a collection a sequence in Python? Which characteristics can vary between different types of sequences?
+**Question:** What are the defining characteristics that make a collection a sequence in Python? Which characteristics can vary between different types of sequences?
 
 <details>
 <summary>Show answer</summary>
@@ -67,5 +67,31 @@ Sequences in Python are collections of items that are ordered and accessible by 
 </details>
 
 ## Operations on Sequences
+
+Slicing is a method to retrieve a subset of elements from a sequence. The syntax for slicing is sequence `[start:stop:step]`.
+
+- `start:` The beginning index of the slice.
+- `stop:` The ending index which is **not** included in the slice.
+- `step:` The interval between items.
+- If omitted, `start` defaults to `0` for positive step values and `-1` for negative step values.
+- The `stop` index dictates that the slice will **end just before** this index. If omitted, the slice goes up to the **end of the sequence**
+- If `start` is greater than `stop`, the result is an **empty sequence**
+
+**Strings** are sequences of characters, when we iterate over them, we do so character by character:
+
+```Python
+>>> message = "bye"
+>>> for char in message:
+...    print(char)
+...
+b
+y
+e
+```
+
+
+
+
+
 
 
