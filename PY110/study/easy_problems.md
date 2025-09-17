@@ -304,3 +304,6 @@ This solution is reasonably straightforward: it simply looks at the first charac
 
 To obtain the remainder of the string after a leading `+` or `-`, we use Python's string slicing syntax.
 </details>
+
+## Problem 7
+
