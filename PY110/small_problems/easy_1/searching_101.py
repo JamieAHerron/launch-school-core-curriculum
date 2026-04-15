@@ -1,67 +1,69 @@
+# Your code goes here
 '''
-Write a program that solicits six (6) numbers from the user and prints a message that describes whether the sixth number appears among the first five.
+P:
+Explicit:
+-solicit six numbers (one by one)
+-prints message stating if sixth number is in the first five
+Implicit:
+- Numbers must be numeric
+- a number must be entered (no blanks)
 
-Example 1:
+Input: 6 numbers (integers)
+Output: string (stating if sixth number is in first five)
 
-Enter the 1st number: 25
-Enter the 2nd number: 15
-Enter the 3rd number: 20
-Enter the 4th number: 17
-Enter the 5th number: 23
-Enter the last number: 17
+D:
+- lists (to store numbers)
+- string (output)
 
-17 is in 25,15,20,17,23.
-
-Example 2:
-
-Enter the 1st number: 25
-Enter the 2nd number: 15
-Enter the 3rd number: 20
-Enter the 4th number: 17
-Enter the 5th number: 23
-Enter the last number: 18
-
-18 isn't in 25,15,20,17,23.
-
-Input: Six numerical strings (if asking user for input)
-Output: String (describing if the sixth number is in the first five)
-
-Explicit requirements:
-    - Ask user six times for various numbers
-    - check whether the final number is the same as any of the first five
-    - print a message that confirms whether the sixth number is/ is not the same as any of the first five
-
-Implicit requirements:
-    - Numerical string that is input will need to be converted to integer
-    - Final input needs to be compared against the first five for equality
-    - integers need to be coerced before final string result is output
-
-Questions:
-    - What if the input is not a numerical string?
-    - Do we need to convert to an integer is strings input are always numerical?
-    - How do we deal with empty strings (no input)?
+A:
+- prompt user for number (six times)
+- after each prompt, store number in list
+- once list complete (six items) ask if last item is contained within first five
+- remove last item and ask 'item in first five'
+- construct string to be returned (yes/no)
 '''
-def get_valid_input(prompt):
 
-    number = input(prompt)
-    while not number.isdigit():
-        number = input(prompt)
-    return number
+#Code:
 
+def searching_101():
+    print('You will be asked to enter six numbers:')
+    
+    count = 0
+    num_list = []
+    while count < 6:
+        answer = int(input('Enter a number:'))
+        num_list.append(answer)
+        count += 1
+    
+    last_num = num_list[5]
+    first_five_list = num_list[:5]
+    first_five = ','.join(str(num) for num in num_list)
+    if last_num in first_five_list:
+        print(f'{last_num} is in {first_five}')
+    else:
+        print(f'{last_num} is not in {first_five}')
 
-first_five_numbers = []
-ordinals = ['1st', '2nd', '3rd', '4th', '5th']
+searching_101()
 
-for i in range(5):
-    prompt = f'Enter the {ordinals[i]} number:'
-    number_str = get_valid_input(prompt)
-    first_five_numbers.append(int(number_str))
+'''
+LAUNCH SCHOOL VERSION
 
-final_number_str = get_valid_input('Enter final value:')
-final_number = int(final_number_str)
-first_five_numbers_string_list = [str(num) for num in first_five_numbers]
+def searching_101():
+    print('You will be asked to enter six numbers:')
 
-if final_number in first_five_numbers:
-    print(f'{final_number} is in {','.join(first_five_numbers_string_list)}')
-else:
-    print(f'{final_number} is not in {','.join(first_five_numbers_string_list)}')
+    num_list = []
+    for _ in range(6):
+        answer = int(input('Enter a number: '))
+        num_list.append(answer)
+
+    first_five = num_list[:5]
+    last_num = num_list[5]
+    numbers_str = ','.join(str(num) for num in first_five)
+
+    if last_num in first_five:
+        print(f'{last_num} is in {numbers_str}.')
+    else:
+        print(f"{last_num} isn't in {numbers_str}.")
+
+searching_101()
+'''
