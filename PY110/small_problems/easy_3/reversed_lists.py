@@ -1,0 +1,58 @@
+'''
+Write a function that takes a list as an argument and reverses its elements, in place. That is, mutate the list passed into the function. The returned object should be the same object used as the argument.
+
+You may not use the list.reverse method nor may you use a slice ([::-1]).
+
+P:
+input: list
+output: list (reversed)
+
+- take list as argument
+- reverse list elements in place
+- return same list object reversed
+- do not use reverse method or slicing
+
+D:
+- list
+
+A:
+- create a left counter (0)
+- create a right counter (len(lst) - 1)
+- use while loop
+- while left is less than right
+- reverse items outwardly working inwards
+- once right is less than left return list object 
+'''
+
+#Code:
+
+def reverse_list(lst):
+    left = 0
+    right = len(lst) - 1
+
+    while left < right:
+        lst[left], lst[right] = lst[right], lst[left]
+        left += 1
+        right -= 1
+    
+    return lst
+
+list1 = [1, 2, 3, 4]
+result = reverse_list(list1)
+print(result == [4, 3, 2, 1])               # True
+print(list1 is result)                      # True
+
+list2 = ["a", "b", "c", "d", "e"]
+result2 = reverse_list(list2)
+print(result2 == ['e', 'd', 'c', 'b', 'a']) # True
+print(list2 is result2)                     # True
+
+list3 = ["abc"]
+result3 = reverse_list(list3)
+print(result3 == ['abc'])                   # True
+print(list3 is result3)                     # True
+
+list4 = []
+result4 = reverse_list(list4)
+print(result4 == [])                        # True
+print(list4 is result4)                     # True
