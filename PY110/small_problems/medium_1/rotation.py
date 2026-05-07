@@ -1,45 +1,34 @@
 '''
 P:
 input: list
-output: (new) list
+output: (rotated) list
 
-- take a list as argument
-- rotate list by moving first element to end of list
-- do not modify original list
+- take a list as an argument
+- rotate the list by moving the first element to the end
+- do not modify the original list
 - return new list
-- if list contains one item, return that one item in list
-- if input empty list, return empty list
-- if input is not a list, return None
 
 D:
-- lists
+-lists
 
 A:
-# error checking
-- check for empty list as argument, return empty list 
-- check for list with one element, return copy
-- check if argument given is list, if not, return none
-# solution
-- take list as argument 
-- make deep copy
-- pop first element from list, store in variable 
-- append to end of list
-- return list
-***could use slicing but that may cause problems with nested iterables and slicing creating only shallow copy, so deep copy is preferred***
+- set up check for empty list, return empty list
+- if not a list, return None
+- slice original list into two parts (first element + remaining elements)
+- return slices joined together in required order (first element last)
 '''
-import copy
 
 def rotate_list(lst):
-    #error checking
+
     if not isinstance(lst, list):
         return None
     if lst == []:
-        return [] 
+        return []
     
-    lst_copy = lst[:]
-    rotated_copy = lst_copy[1:] + lst_copy[:1]
+    first_element = lst[:1]
+    remaining_elements = lst[1:]
 
-    return rotated_copy
+    return remaining_elements + first_element
 
 
 # All of these examples should print True
