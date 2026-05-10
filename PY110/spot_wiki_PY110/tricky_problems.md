@@ -1,0 +1,31 @@
+# PY110
+## Problem 3: Count Substring Instances
+
+Write a function that takes two strings as input, `full_text` and `search_text`,
+and returns the number of times `search_text` appears in `full_text`.
+
+## Examples:
+
+```python
+solution('abcdeb','b') # should return 2 since 'b' shows up twice
+solution('aaabbbcccc', 'bbb') # should return 1
+solution('aaabbbbcccc', 'bbb') # should return 2
+```
+
+<details>
+<summary>Solution:</summary>
+
+```python
+def solution(full_text, search_text):
+    count = 0
+    start = 0
+    while True:
+        pos = full_text.find(search_text, start)
+        if pos == -1:
+            break
+        count += 1
+        start = pos + 1
+    return count
+```
+
+</details>
