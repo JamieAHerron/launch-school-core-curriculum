@@ -30,36 +30,6 @@ def solution(full_text, search_text):
 
 </details>
 
-## Problem 4: Detect the Pangram
-
-A pangram is a sentence that contains every single letter of the alphabet at
-least once. Given a string, detect whether or not it is a pangram.
-Return True if it is, False if not. Ignore numbers and punctuation.
-
-## Examples:
-
-```python
-pangram("The quick brown fox jumps over the lazy dog.") # should return True
-pangram("This is not a pangram.") # should return False
-```
-
-<details>
-<summary>Solution:</summary>
-
-```python
-def pangram(string):
-    alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    string_lower = string.lower()
-    
-    for letter in alphabet:
-        if letter not in string_lower:
-            return False
-    
-    return True
-```
-
-</details>
-
 ## Problem 5: Longest Chain of Vowels
 
 Write a function that takes a lowercase string as input and returns the
